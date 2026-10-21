@@ -114,6 +114,7 @@
 
 			// Adds layers to map
 			const buildings = L.geoJson(buildings, {
+				style: style_isochrone
 			}).addTo(map);
 			/*
 			const buffer = L.geoJson(buffer, {
@@ -154,7 +155,7 @@
 			}*/
 
 			// Adds styling for the layers
-			/*function style_isochrone(feature) {
+			function style_isochrone(feature) {
 				return {
 					color: 'red',
 					weight: 3,
@@ -163,7 +164,7 @@
 			}
 
 			
-			function style_parks(feature) {
+			/*function style_parks(feature) {
 				return {
 					fillColor: park_coloring(feature.properties.visited_before_project, feature.properties.date_visited),
 					weight: 3,
