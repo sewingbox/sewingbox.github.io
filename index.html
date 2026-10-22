@@ -145,13 +145,13 @@
 			};
 
 			// Adds layers to map
-			const wards_longsew = L.geoJson(wards, {
-				style: style_wards_longsew,
-				onEachFeature: onEachFeature_wards
-			}).addTo(map);
+			/*const wards_longsew = L.geoJson(wards, {
+				style: style_wards_longsew
+			}).addTo(map);*/
 
 			const precincts_longsew = L.geoJson(precincts, {
-				style: style_precincts_longsew
+				style: style_precincts_longsew,
+				onEachFeature: onEachFeature_precincts
 			}).addTo(map);
 			
 			const public_property_mpls_minus_ROW = L.geoJson(public_property_mpls, {
@@ -171,7 +171,7 @@
 			}).addTo(map);
 
 			// Labels for layers
-			function onEachFeature_wards(feature, layer) {
+			function onEachFeature_precincts(feature, layer) {
 				if (feature.properties && feature.properties.name) {
 					layer.bindTooltip(feature.properties.name, {
 						permanent: true,
@@ -180,20 +180,20 @@
 					});
 				}
 			};
-			
+
 			// Adds styling for the layers
-			function style_wards_longsew(feature) {
+			/*function style_wards_longsew(feature) {
 				return {
 					color: 'black',
 					weight: 2,
 					fillOpacity: 0,
 				}
-			}
+			}*/
 
 			function style_precincts_longsew(feature) {
 				return {
 					color: 'black',
-					weight: 1,
+					weight: 2,
 					fillOpacity: 0,
 				}
 			}
