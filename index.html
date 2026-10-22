@@ -166,7 +166,7 @@
 			}).addTo(map);
 
 			const public_property_mpls_minus_ROW = L.geoJson(public_property_mpls, {
-				style: public_property_mpls_minus_ROW
+				style: style_public_property_mpls_minus_ROW
 			}).addTo(map);
 
 			// Adds styling for the layers
@@ -174,7 +174,7 @@
 				return {
 					color: 'black',
 					weight: 2,
-					fillOpacity: 0.5,
+					fillOpacity: 0,
 				}
 			}
 
@@ -182,7 +182,7 @@
 				return {
 					color: 'black',
 					weight: 1,
-					fillOpacity: 0.5,
+					fillOpacity: 0,
 				}
 			}
 
@@ -190,7 +190,7 @@
 				return {
 					color: 'blue',
 					weight: 3,
-					fillOpacity: 0.5,
+					fillOpacity: 1,
 				}
 			}
 			
@@ -198,7 +198,7 @@
 				return {
 					color: 'red',
 					weight: 3,
-					fillOpacity: 0.5,
+					fillOpacity: 0,
 				}
 			}
 			
@@ -206,7 +206,7 @@
 				return {
 					color: 'red',
 					weight: 3,
-					fillOpacity: 0.3,
+					fillOpacity: 1,
 				}
 			}
 
@@ -214,7 +214,7 @@
 				return {
 					color: 'red',
 					weight: 3,
-					fillOpacity: 0.2,
+					fillOpacity: 1,
 				}
 			}
 
