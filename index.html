@@ -146,7 +146,8 @@
 
 			// Adds layers to map
 			const wards_longsew = L.geoJson(wards, {
-				style: style_wards_longsew
+				style: style_wards_longsew,
+				onEachFeature: onEachFeature_wards
 			}).addTo(map);
 
 			const precincts_longsew = L.geoJson(precincts, {
@@ -168,6 +169,16 @@
 			const buildings = L.geoJson(footprints, {
 				style: style_buildings
 			}).addTo(map);
+
+			// Labels for layers
+			function onEachFeature_wards(feature, layer) {
+				if (feature.properties && feature.properties.name) {
+				layer.bindTooltip(feature.properties.name, {
+					permanent: true,
+					direction: "center",
+					className: "polygon-label"
+				});
+			}
 
 			// Adds styling for the layers
 			function style_wards_longsew(feature) {
@@ -206,23 +217,23 @@
 				return {
 					color: 'red',
 					weight: 3,
-					fillOpacity: 1,
+					fillOpacity: 0.5,
 				}
 			}
 
 			function style_public_property_mpls_minus_ROW(feature) {
 				return {
-					color: 'red',
+					color: 'orange',
 					weight: 3,
-					fillOpacity: 1,
+					fillOpacity: 0.5,
 				}
 			}
 
 			// Adds functionality relating to fetching device location (adds a circle at the location) 
 			function onLocationFound(e) {
 				L.circle(e.latlng, {
-					color: 'red',
-					fillColor: '#f03',
+					color: 'purple',
+					fillColor: 'purple',
 					fillOpacity: 0.5,
 					radius: 5
 				}).addTo(map);
