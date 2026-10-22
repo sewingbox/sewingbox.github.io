@@ -173,13 +173,14 @@
 			// Labels for layers
 			function onEachFeature_wards(feature, layer) {
 				if (feature.properties && feature.properties.name) {
-				layer.bindTooltip(feature.properties.name, {
-					permanent: true,
-					direction: "center",
-					className: "polygon-label"
-				});
-			}
-
+					layer.bindTooltip(feature.properties.name, {
+						permanent: true,
+						direction: "center",
+						className: "polygon-label"
+					});
+				}
+			};
+			
 			// Adds styling for the layers
 			function style_wards_longsew(feature) {
 				return {
