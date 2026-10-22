@@ -158,34 +158,31 @@
 			}).addTo(map);
 			
 			const buffer100ft = L.geoJson(buffer, {
-				style: style_buffer100ft,
-				onEachFeature: onEachFeature_parks
+				style: style_buffer100ft
 			}).addTo(map);
 			
 			const public_property_minus_ROW = L.geoJson(public_property, {
-				style: style_public_property_minus_ROW,
-				onEachFeature: onEachFeature_parks
+				style: style_public_property_minus_ROW
 			}).addTo(map);
 
-			const public_property_mpls_minus_row = L.geoJson(public_property_mpls, {
-				style: public_property_mpls_minus_row,
-				onEachFeature: onEachFeature_parks
+			const public_property_mpls_minus_ROW = L.geoJson(public_property_mpls, {
+				style: public_property_mpls_minus_ROW
 			}).addTo(map);
 
 			// Adds styling for the layers
 			function style_wards_longsew(feature) {
 				return {
 					color: 'black',
-					weight: 5,
-					fillOpacity: 0,
+					weight: 2,
+					fillOpacity: 0.5,
 				}
 			}
 
 			function style_precincts_longsew(feature) {
 				return {
 					color: 'black',
-					weight: 4,
-					fillOpacity: 0,
+					weight: 1,
+					fillOpacity: 0.5,
 				}
 			}
 
@@ -205,7 +202,7 @@
 				}
 			}
 			
-			function style_public_property_minus_row(feature) {
+			function style_public_property_minus_ROW(feature) {
 				return {
 					color: 'red',
 					weight: 3,
@@ -213,7 +210,7 @@
 				}
 			}
 
-			function style_public_property_mpls_minus_row(feature) {
+			function style_public_property_mpls_minus_ROW(feature) {
 				return {
 					color: 'red',
 					weight: 3,
