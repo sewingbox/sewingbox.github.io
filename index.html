@@ -152,21 +152,21 @@
 			const precincts_longsew = L.geoJson(precincts, {
 				style: style_precincts_longsew
 			}).addTo(map);
+			
+			const public_property_mpls_minus_ROW = L.geoJson(public_property_mpls, {
+				style: style_public_property_mpls_minus_ROW
+			}).addTo(map);
 
-			const buildings = L.geoJson(footprints, {
-				style: style_buildings
-			}).addTo(map);
-			
-			const buffer100ft = L.geoJson(buffer, {
-				style: style_buffer100ft
-			}).addTo(map);
-			
 			const public_property_minus_ROW = L.geoJson(public_property, {
 				style: style_public_property_minus_ROW
 			}).addTo(map);
 
-			const public_property_mpls_minus_ROW = L.geoJson(public_property_mpls, {
-				style: style_public_property_mpls_minus_ROW
+			const buffer100ft = L.geoJson(buffer, {
+				style: style_buffer100ft
+			}).addTo(map);
+
+			const buildings = L.geoJson(footprints, {
+				style: style_buildings
 			}).addTo(map);
 
 			// Adds styling for the layers
