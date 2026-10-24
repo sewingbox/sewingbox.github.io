@@ -137,8 +137,12 @@
 		</script>
 
 		<script type="text/javascript">
-			const map = L.map('map').setView([44.946, -93.219], 14);
-
+			const map = L.map('map', {
+				center: [44.946, -93.219],
+				zoom: 14,
+				layers: [group_buildings, group_buffer, group_public, group_public_mpls]
+			});
+			
 			map.locate({setView: true, maxZoom: 14});
 
 			const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -242,12 +246,20 @@
 				}
 			}
 			// Adds the layer selector
-			var layerControl = L.control.layers({
-				"Buildings containing polling places (211B.11.1(b)(2)(i))": footprints,
-				"100 ft from a building containing a polling place (211B.11.1(b)(2)(ii))": buffer100ft,
-				"Public property (211B.11.1(b)(2)(iii))": public_property_minus_ROW,
-				"Minneapolis' interpretation of 211B.11.1(b)(2)(iii)": public_property_mpls_minus_ROW
-			}).addTo(map);
+			var group_buildings = L.layerGroup(buildings);
+			var group_buffer = L.layerGroup(buffer100ft);
+			var group_public = L.layerGroup(public_property_minus_ROW);
+			var group_public_mpls = L.layerGroup(public_property_mpls_minus_ROW);
+
+			
+			var voting_layers = {
+				"Buildings containing polling places (211B.11.1(b)(2)(i))": group_buildings,
+				"100 ft from a building containing a polling place (211B.11.1(b)(2)(ii))": group_buffer,
+				"Public property (211B.11.1(b)(2)(iii))": group_public,
+				"Minneapolis' interpretation of 211B.11.1(b)(2)(iii)": group_public_mpls
+			}
+			
+			var layerControl = L.control.layers(voting_layers).addTo(map);
 
 			// Adds functionality relating to fetching device location (adds a circle at the location) 
 			function onLocationFound(e) {
