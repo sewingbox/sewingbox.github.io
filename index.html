@@ -14,6 +14,9 @@
 			height: 100%;
 			margin: 0;
 		}
+		.center {
+		text-align: center;
+		}
 		.leaflet-container {
 			height: 100%;
 			width: 100%;
@@ -176,7 +179,7 @@
 			// Labels for layers
 			function onEachFeature_buildings(feature, layer) {
 				if (feature.properties && feature.properties.name) {
-					let labelContent = `<p>${feature.properties.name}, W${feature.properties.ward} P${feature.properties.precinct}
+					let labelContent = `<p class="center">${feature.properties.name}, <b>W${feature.properties.ward} P${feature.properties.precinct}</b>
 										<br>
 										${feature.properties.address}</p>`;
 
@@ -238,6 +241,13 @@
 					fillOpacity: 0.5,
 				}
 			}
+			// Adds the layer selector
+			var layerControl = L.control.layers({
+				"Buildings containing polling places (211B.11.1(b)(2)(i))": footprints,
+				"100 ft from a building containing a polling place (211B.11.1(b)(2)(ii))": buffer100ft,
+				"Public property (211B.11.1(b)(2)(iii))": public_property_minus_ROW,
+				"Minneapolis' interpretation of 211B.11.1(b)(2)(iii)": public_property_mpls_minus_ROW
+			}).addTo(map);
 
 			// Adds functionality relating to fetching device location (adds a circle at the location) 
 			function onLocationFound(e) {
