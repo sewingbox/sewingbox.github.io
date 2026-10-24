@@ -134,9 +134,9 @@
 		</script>
 
 		<script type="text/javascript">
-			const map = L.map('map').setView([44.946, -93.219], 9);
+			const map = L.map('map').setView([44.946, -93.219], 13);
 
-			map.locate({setView: true, maxZoom: 9});
+			map.locate({setView: true, maxZoom: 13});
 
 			const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 19,
@@ -153,8 +153,7 @@
 			}).addTo(map);*/
 
 			const precincts_longsew = L.geoJson(precincts, {
-				style: style_precincts_longsew,
-				onEachFeature: onEachFeature_precincts
+				style: style_precincts_longsew
 			}).addTo(map);
 			
 			const public_property_mpls_minus_ROW = L.geoJson(public_property_mpls, {
@@ -170,15 +169,16 @@
 			}).addTo(map);
 
 			const buildings = L.geoJson(footprints, {
-				style: style_buildings
+				style: style_buildings,
+				onEachFeature: onEachFeature_buildings
 			}).addTo(map);
 
 			// Labels for layers
-			function onEachFeature_precincts(feature, layer) {
+			function onEachFeature_buildings(feature, layer) {
 				if (feature.properties && feature.properties.name) {
 					layer.bindTooltip(feature.properties.name, {
 						permanent: true,
-						direction: "center",
+						direction: "top",
 						className: "polygon-label",
 						opacity: 0.6
 					});
@@ -222,7 +222,7 @@
 				return {
 					color: 'red',
 					weight: 3,
-					fillOpacity: 0.5,
+					fillOpacity: 0.2,
 				}
 			}
 
