@@ -134,9 +134,9 @@
 		</script>
 
 		<script type="text/javascript">
-			const map = L.map('map').setView([44.946, -93.219], 13);
+			const map = L.map('map').setView([44.946, -93.219], 14);
 
-			map.locate({setView: true, maxZoom: 13});
+			map.locate({setView: true, maxZoom: 14});
 
 			const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 19,
@@ -176,12 +176,16 @@
 			// Labels for layers
 			function onEachFeature_buildings(feature, layer) {
 				if (feature.properties && feature.properties.name) {
-					layer.bindTooltip(feature.properties.name, {
+					let labelContent = `<p>${feature.properties.name}, W${feature.properties.ward} P${feature.properties.precinct}</p>
+									<p>Jess${feature.properties.address}</p>`;
+
+					layer.bindTooltip(labelContent, {
 						permanent: true,
 						direction: "top",
 						className: "polygon-label",
 						opacity: 0.6
-					});
+					}
+					);
 				}
 			};
 
