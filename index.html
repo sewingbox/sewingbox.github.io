@@ -252,7 +252,7 @@
 				}
 			}
 			// Adds the layer selector
-			const group_buildings = L.layerGroup(buildings);
+			/*const group_buildings = L.layerGroup(buildings);
 			const group_buffer = L.layerGroup(buffer100ft);
 			const group_public = L.layerGroup(public_property_minus_ROW);
 			const group_public_mpls = L.layerGroup(public_property_mpls_minus_ROW);
@@ -262,8 +262,14 @@
 				"100 ft from a building containing a polling place (211B.11.1(b)(2)(ii))": group_buffer,
 				"Public property (211B.11.1(b)(2)(iii))": group_public,
 				"Minneapolis' interpretation of 211B.11.1(b)(2)(iii)": group_public_mpls
+			};*/
+			const voting_layers = {
+				"Buildings containing polling places (211B.11.1(b)(2)(i))": buildings,
+				"100 ft from a building containing a polling place (211B.11.1(b)(2)(ii))": buffer100ft,
+				"Public property (211B.11.1(b)(2)(iii))": public_property_minus_ROW,
+				"Minneapolis' interpretation of 211B.11.1(b)(2)(iii)": public_property_mpls_minus_ROW
 			};
-			
+
 			const layerControl = L.control.layers(null, voting_layers).addTo(map);
 
 			// Adds functionality relating to fetching device location (adds a circle at the location) 
