@@ -137,23 +137,25 @@
 		</script>
 
 		<script type="text/javascript">
-			const group_buildings = L.layerGroup(buildings);
-			const group_buffer = L.layerGroup(buffer100ft);
-			const group_public = L.layerGroup(public_property_minus_ROW);
-			const group_public_mpls = L.layerGroup(public_property_mpls_minus_ROW);
 			
-			const map = L.map('map', {
-				center: [44.946, -93.219],
-				zoom: 14,
-				layers: [group_buildings, group_buffer, group_public, group_public_mpls]
-			});
-			
-			map.locate({setView: true, maxZoom: 14});
-
 			const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 19,
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 			}).addTo(map);
+
+			/*const map = L.map('map', {
+				center: [44.946, -93.219],
+				zoom: 14,
+				layers: [group_buildings, group_buffer, group_public, group_public_mpls]
+			});*/
+
+			const map = L.map('map', {
+				center: [44.946, -93.219],
+				zoom: 14,
+				layers: [tiles]
+			});
+			
+			map.locate({setView: true, maxZoom: 14});
 
 			function zoomToFeature(e) {
     			map.fitBounds(e.target.getBounds());
@@ -251,7 +253,10 @@
 				}
 			}
 			// Adds the layer selector
-			
+			const group_buildings = L.layerGroup(buildings);
+			const group_buffer = L.layerGroup(buffer100ft);
+			const group_public = L.layerGroup(public_property_minus_ROW);
+			const group_public_mpls = L.layerGroup(public_property_mpls_minus_ROW);
 			
 			const voting_layers = {
 				"Buildings containing polling places (211B.11.1(b)(2)(i))": group_buildings,
