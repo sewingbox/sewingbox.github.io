@@ -137,13 +137,6 @@
 		</script>
 
 		<script type="text/javascript">
-			
-			/*const map = L.map('map', {
-				center: [44.946, -93.219],
-				zoom: 14,
-				layers: [group_buildings, group_buffer, group_public, group_public_mpls]
-			});*/
-
 			const map = L.map('map', {
 				center: [44.946, -93.219],
 				zoom: 14
@@ -152,6 +145,11 @@
 			const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 19,
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+			}).addTo(map);
+
+			const imagery = L.tileLayer('https://arcgisonline.com{z}/{y}/{x}', {
+				maxZoom: 19,
+				attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 			}).addTo(map);
 
 			map.locate({setView: true, maxZoom: 14});
@@ -252,17 +250,11 @@
 				}
 			}
 			// Adds the layer selector
-			/*const group_buildings = L.layerGroup(buildings);
-			const group_buffer = L.layerGroup(buffer100ft);
-			const group_public = L.layerGroup(public_property_minus_ROW);
-			const group_public_mpls = L.layerGroup(public_property_mpls_minus_ROW);
-			
-			const voting_layers = {
-				"Buildings containing polling places (211B.11.1(b)(2)(i))": group_buildings,
-				"100 ft from a building containing a polling place (211B.11.1(b)(2)(ii))": group_buffer,
-				"Public property (211B.11.1(b)(2)(iii))": group_public,
-				"Minneapolis' interpretation of 211B.11.1(b)(2)(iii)": group_public_mpls
-			};*/
+			const basemaps = {
+				"OpenStreetMap": tiles,
+				"Esri aerial imagery": imagery
+			};
+
 			const voting_layers = {
 				"Buildings containing polling places (211B.11.1(b)(2)(i))": buildings,
 				"100 ft from a building containing a polling place (211B.11.1(b)(2)(ii))": buffer100ft,
@@ -270,7 +262,7 @@
 				"Minneapolis' interpretation of 211B.11.1(b)(2)(iii)": public_property_mpls_minus_ROW
 			};
 
-			const layerControl = L.control.layers(null, voting_layers).addTo(map);
+			const layerControl = L.control.layers(basemaps, voting_layers).addTo(map);
 
 			// Adds functionality relating to fetching device location (adds a circle at the location) 
 			function onLocationFound(e) {
