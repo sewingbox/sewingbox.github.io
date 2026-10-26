@@ -264,7 +264,7 @@
 				"Minneapolis' interpretation of 211B.11.1(b)(2)(iii)": group_public_mpls
 			};
 			
-			const layerControl = L.control.layers(voting_layers).addTo(map);
+			const layerControl = L.control.layers(null, voting_layers).addTo(map);
 
 			// Adds functionality relating to fetching device location (adds a circle at the location) 
 			function onLocationFound(e) {
