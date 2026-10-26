@@ -138,11 +138,6 @@
 
 		<script type="text/javascript">
 			
-			const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				maxZoom: 19,
-				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-			}).addTo(map);
-
 			/*const map = L.map('map', {
 				center: [44.946, -93.219],
 				zoom: 14,
@@ -155,6 +150,11 @@
 				layers: [tiles]
 			});
 			
+			const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+			}).addTo(map);
+
 			map.locate({setView: true, maxZoom: 14});
 
 			function zoomToFeature(e) {
