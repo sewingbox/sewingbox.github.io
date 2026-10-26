@@ -137,6 +137,11 @@
 		</script>
 
 		<script type="text/javascript">
+			const group_buildings = L.layerGroup(buildings);
+			const group_buffer = L.layerGroup(buffer100ft);
+			const group_public = L.layerGroup(public_property_minus_ROW);
+			const group_public_mpls = L.layerGroup(public_property_mpls_minus_ROW);
+			
 			const map = L.map('map', {
 				center: [44.946, -93.219],
 				zoom: 14,
@@ -246,10 +251,7 @@
 				}
 			}
 			// Adds the layer selector
-			const group_buildings = L.layerGroup(buildings);
-			const group_buffer = L.layerGroup(buffer100ft);
-			const group_public = L.layerGroup(public_property_minus_ROW);
-			const group_public_mpls = L.layerGroup(public_property_mpls_minus_ROW);
+			
 			
 			const voting_layers = {
 				"Buildings containing polling places (211B.11.1(b)(2)(i))": group_buildings,
